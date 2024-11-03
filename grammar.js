@@ -45,47 +45,46 @@ module.exports = grammar({
       'return-if',
       $._newline,
       $._indent,
-      $.expr,
-      $.expr,
+      $._expr,
+      $._expr,
       $._dedent,
     ),
     assignment: $ => seq(
-      repeat1($.assignment_name),
+      field('names', repeat1($.assignment_name)),
       ': ',
-      choice(
+      field('expr', choice(
         $.identifier,
         $.compound_identifier,
         $.number,
         $.string,
         $.multiline_call,
-        //$.lambda_definition,
         $.base_single_line_call,
-      ),
+      )),
       optional($._newline),
     ),
     assignment_name: $ => seq(
-      $.identifier,
+      field('name', $.identifier),
       optional(seq(
         '|',
-        $.single_line_expr,
+        field('type', $._single_line_expr),
       )),
     ),
     function_parameter: $ => seq(
-      $.parameter_name,
-      '|',
-      $.single_line_expr,//TODO type_expr?
+      field('name', $.parameter_name),
+      seq('|',
+        field('type', $._single_line_expr),//TODO type_expr?
+      ),
     ),
     function_definition: $ => seq(
-      $.function_name,
-      optional(seq(
+      field('name', $.identifier),
+      optional(field('supertype', seq(
         ':',
         $.identifier,
-      )),
-      ' /',
-      $.single_line_expr,//TODO type_expr?
+      ))),
+      seq('/', field('return_type', $._single_line_expr)),//TODO type_expr?,
       ' ',
-      repeat(seq($.function_parameter, ' ')),
-      choice(
+      field('parameters', repeat(seq($.function_parameter, ' '))),
+      field('body', choice(
         seq('=>',$._newline, $._indent, $.block, $._dedent),
         seq('=> ', choice(
           seq($.identifier, $._newline),
@@ -95,7 +94,7 @@ module.exports = grammar({
           $.multiline_call,
           $.base_single_line_call,     
         )),
-      ),
+      )),
     ),
     lambda_definition: $ => seq(
       '::',
@@ -113,63 +112,66 @@ module.exports = grammar({
         ),
         //optional($._newline),
       )),
-      $.expr,
+      $._expr,
     ),
     multiline_call: $ => seq(
-      $.identifier,
+      field('name', $.identifier),
       $._indent,
-      repeat1(seq(
-        $.expr,
-      )),
+      field('arguments', repeat1(seq(
+        $._expr,
+      ))),
       $._dedent,
     ),
     base_single_line_call: $ => prec(9, seq(
-      $.identifier,
-      repeat(seq(' ', $.single_line_expr)),
-      optional(seq(
-        ' ',
-        choice(
-          seq($.identifier, $._newline),
-          seq($.compound_identifier, $._newline),
-          seq($.number, $._newline),
-          seq($.string, $._newline),
-          $.multiline_call,
-          $.lambda_definition,
-        )
-      )),
+      field('name', $.identifier),
+      field('arguments', seq(
+        repeat(seq(' ', $._single_line_expr)),
+        optional(seq(
+          ' ',
+          choice(
+            seq($.identifier, $._newline),
+            seq($.compound_identifier, $._newline),
+            seq($.number, $._newline),
+            seq($.string, $._newline),
+            $.multiline_call,
+            $.lambda_definition,
+          )
+      )))),
     )),
     single_line_call: $ => seq(
-      $.identifier,
+      field('name', $.identifier),
       '(',
-      optional(
+      field('arguments', optional(
         seq(
-          $.single_line_expr, 
-          repeat(seq(' ', $.single_line_expr)),
+          $._single_line_expr, 
+          repeat(seq(' ', $._single_line_expr)),
         )
-      ),
+      )),
       ')'
     ),
-    expr: $ => choice(
+    _expr: $ => choice(
       $.identifier,
       $.compound_identifier,
       $.number,
       $.string,
+      $.boolean,
       $.multiline_call,
       $.lambda_definition,
       $.base_single_line_call,
     ),
-    single_line_expr: $ => choice(
+    _single_line_expr: $ => choice(
       $.identifier,
       $.compound_identifier,
+      $.boolean,
       $.number,
       $.string,
       $.single_line_call,
     ),
     identifier: $ => /[a-z&][a-z\-0-9]*/,
-    parameter_name: $ => /[a-z+][a-z\-0-9]*/,
-    function_name: $ => /[a-z&][a-z\-0-9]*/,
+    parameter_name: $ => /[a-z\+][a-z\-0-9]*/,
     compound_identifier: $ => /[a-z][a-z\-0-9\.]*/,
     number: $ => choice(/\d+/, /\-\d+/), //TODO
+    boolean: $=> choice("true", "false"),
     string: $ => seq(
       "'",
       /[^']*/,

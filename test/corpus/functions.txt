@@ -1,0 +1,25 @@
+=========
+Functions
+=========
+
+ascii-code-of /u8 str|string =>
+	b: as-bytes str
+	b.0
+
+---
+  (source_file
+      (function_definition
+        (identifier)
+        (identifier)
+        (function_parameter
+          (identifier)
+          (identifier))
+        (block
+          (assignment
+            (assignment_name
+              (identifier))
+            (base_single_line_call
+              (identifier)
+              (identifier)))
+          (compound_identifier))))
+
