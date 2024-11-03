@@ -1,0 +1,33 @@
+{
+  "grammars": [
+    {
+      "name": "posthoc",
+      "camelcase": "Posthoc",
+      "scope": "source.posthoc",
+      "path": ".",
+      "file-types": null,
+      "injection-regex": "^posthoc$"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "Posthoc grammar for tree-sitter",
+    "authors": [
+      {
+        "name": "Liam"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/lfdoherty/tree-sitter-posthoc.git"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}
