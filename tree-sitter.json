@@ -5,7 +5,7 @@
       "camelcase": "Posthoc",
       "scope": "source.posthoc",
       "path": ".",
-      "file-types": ["hoc"],
+      "file-types": ["psh"],
       "injection-regex": "^posthoc$",
       "highlights": [
         "queries/highlights.scm"
