@@ -1,0 +1,50 @@
+=========
+single-quoted string
+=========
+test: 'some string'
+---
+(source_file
+  (assignment
+    (assignment_name
+      (identifier))
+    (string)))
+
+
+=========
+double-quoted string
+=========
+test: "some string"
+---
+(source_file
+  (assignment
+    (assignment_name
+      (identifier))
+    (string)))
+
+
+=========
+multiline single-quoted string
+=========
+test: 'some "blah"
+ string'
+---
+(source_file
+  (assignment
+    (assignment_name
+      (identifier))
+    (string)))
+
+
+
+=========
+multiline double-quoted string
+=========
+test: "some 'blah'
+ string"
+---
+(source_file
+  (assignment
+    (assignment_name
+      (identifier))
+    (string)))
+

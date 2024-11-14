@@ -568,20 +568,11 @@
     }
   },
   {
-    "type": "string",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": " ",
     "named": false
   },
   {
     "type": "!include ",
-    "named": false
-  },
-  {
-    "type": "'",
     "named": false
   },
   {
@@ -643,6 +634,10 @@
   {
     "type": "return-if",
     "named": false
+  },
+  {
+    "type": "string",
+    "named": true
   },
   {
     "type": "true",

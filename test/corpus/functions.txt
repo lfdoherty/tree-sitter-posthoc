@@ -12,7 +12,7 @@ ascii-code-of /u8 str|string =>
         (identifier)
         (identifier)
         (function_parameter
-          (identifier)
+          (parameter_name)
           (identifier))
         (block
           (assignment

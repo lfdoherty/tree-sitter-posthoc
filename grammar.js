@@ -172,10 +172,6 @@ module.exports = grammar({
     compound_identifier: $ => /[a-z][a-z\-0-9\.]*/,
     number: $ => choice(/\d+/, /\-\d+/), //TODO
     boolean: $=> choice("true", "false"),
-    string: $ => seq(
-      "'",
-      /[^']*/,
-      "'",
-    ),
+    string: $ => /('[^']*')|("[^"]*")/
   }
 });
