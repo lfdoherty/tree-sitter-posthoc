@@ -18,7 +18,15 @@ module.exports = grammar({
 
 		line_comment: ($) => token(/\/\/[^\n]*/),
 		//block_comment: ($) => token(/\/\*(.|\n)*\*\//),
-		block_comment: ($) => token(/\/\*(\*(?!\/)|[^*])*\*\//),
+		//block_comment: ($) => token(/\/\*(\*(?!\/)|[^*])*\*\//),
+		// http://stackoverflow.com/questions/13014947/regex-to-match-a-c-style-multiline-comment/36328890#36328890
+		block_comment: (_) =>
+			token(
+				choice(
+					seq("//", /[^\r\n\u2028\u2029]*/),
+					seq("/*", /[^*]*\*+([^/*][^*]*\*+)*/, "/"),
+				),
+			),
 
 		_top_level_statement: ($) =>
 			choice($.function_definition, $.assignment, $.include),
