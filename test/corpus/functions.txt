@@ -85,3 +85,27 @@ planar-graph-line-drawing-from-rectangle /planar-graph-line-drawing mins|real2 =
             (number)
             (compound_identifier)
             ))))
+
+===
+function with named supertype
+===
+
+bit-and:native-function /int a|int b|int =>
+	non-callable any-instance
+
+---
+    (source_file
+      (function_definition
+        (identifier)
+        (supertype_name)
+        (identifier)
+        (function_parameter
+          (parameter_name)
+          (identifier))
+        (function_parameter
+          (parameter_name)
+          (identifier))
+        (block
+          (base_single_line_call
+            (identifier)
+            (identifier)))))

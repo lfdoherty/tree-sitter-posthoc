@@ -314,21 +314,17 @@
             "named": true
           }
         ]
-      },
-      "supertype": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": ":",
-            "named": false
-          },
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "supertype_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -750,6 +746,10 @@
   },
   {
     "type": "string",
+    "named": true
+  },
+  {
+    "type": "supertype_name",
     "named": true
   },
   {

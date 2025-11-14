@@ -187,21 +187,17 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "FIELD",
-              "name": "supertype",
-              "content": {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "STRING",
-                    "value": ":"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "identifier"
-                  }
-                ]
-              }
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": ":"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "supertype_name"
+                }
+              ]
             },
             {
               "type": "BLANK"
@@ -841,6 +837,10 @@
     "identifier": {
       "type": "PATTERN",
       "value": "[a-z&][a-z\\-0-9]*"
+    },
+    "supertype_name": {
+      "type": "PATTERN",
+      "value": "[a-z\\-0-9]+"
     },
     "parameter_name": {
       "type": "PATTERN",

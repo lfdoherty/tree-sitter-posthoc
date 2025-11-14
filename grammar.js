@@ -47,7 +47,7 @@ module.exports = grammar({
 		function_definition: ($) =>
 			seq(
 				field("name", $.identifier),
-				optional(field("supertype", seq(":", $.identifier))),
+				optional(seq(":", $.supertype_name)),
 				" ",
 				"/",
 				field("return_type", $._single_line_expr), //TODO type_expr?,
@@ -173,6 +173,7 @@ module.exports = grammar({
 				$.single_line_call,
 			),
 		identifier: ($) => /[a-z&][a-z\-0-9]*/,
+		supertype_name: ($) => /[a-z\-0-9]+/,
 		parameter_name: ($) => /[a-z\+][a-z\-0-9]*/,
 		compound_identifier: ($) => /[a-z][a-z\-0-9\.]*/,
 		discard_identifier: ($) => /_/,
