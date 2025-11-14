@@ -1,0 +1,36 @@
+=========
+zero-parameter lambda syntax supported
+=========
+
+some-function /u8 str|string =>
+	fork
+		eq str 'jimmy'
+		--
+			'hi'
+		--
+			'bye'
+
+---
+  (source_file
+      (function_definition
+        name: (identifier)
+        return_type: (identifier)
+        parameters: (function_parameter
+          name: (parameter_name)
+          type: (identifier)
+        )
+        body: (block
+          (multiline_call
+          	name: (identifier)
+           arguments: (multiline_arguments
+           	(base_single_line_call
+            	name: (identifier)
+             	arguments: (identifier)
+              	arguments: (string)
+            )
+            (zero_parameter_lambda_definition
+                (block
+                  (string)))
+            (zero_parameter_lambda_definition
+            (block
+                (string))))))))

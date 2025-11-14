@@ -418,6 +418,31 @@
         }
       ]
     },
+    "zero_parameter_lambda_definition": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "--"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_newline"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_indent"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "block"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_dedent"
+        }
+      ]
+    },
     "lambda_definition": {
       "type": "SEQ",
       "members": [
@@ -647,6 +672,10 @@
                             {
                               "type": "SYMBOL",
                               "name": "lambda_definition"
+                            },
+                            {
+                              "type": "SYMBOL",
+                              "name": "zero_parameter_lambda_definition"
                             }
                           ]
                         }
@@ -751,6 +780,10 @@
         {
           "type": "SYMBOL",
           "name": "lambda_definition"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "zero_parameter_lambda_definition"
         },
         {
           "type": "SYMBOL",

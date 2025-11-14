@@ -83,7 +83,8 @@ module.exports = grammar({
 				//	optional($._newline),
 			);
 		},
-
+		zero_parameter_lambda_definition: ($) =>
+			seq("--", $._newline, $._indent, $.block, $._dedent),
 		lambda_definition: ($) =>
 			seq(
 				"::",
@@ -130,6 +131,7 @@ module.exports = grammar({
 										seq($.string, $._newline),
 										$.multiline_call,
 										$.lambda_definition,
+										$.zero_parameter_lambda_definition,
 									),
 								),
 							),
@@ -158,6 +160,7 @@ module.exports = grammar({
 				$.boolean,
 				$.multiline_call,
 				$.lambda_definition,
+				$.zero_parameter_lambda_definition,
 				$.base_single_line_call,
 			),
 		_single_line_expr: ($) =>

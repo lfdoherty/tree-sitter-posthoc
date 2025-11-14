@@ -160,6 +160,10 @@
           {
             "type": "string",
             "named": true
+          },
+          {
+            "type": "zero_parameter_lambda_definition",
+            "named": true
           }
         ]
       },
@@ -221,6 +225,10 @@
         },
         {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "zero_parameter_lambda_definition",
           "named": true
         }
       ]
@@ -428,6 +436,10 @@
         {
           "type": "string",
           "named": true
+        },
+        {
+          "type": "zero_parameter_lambda_definition",
+          "named": true
         }
       ]
     }
@@ -507,6 +519,10 @@
           {
             "type": "string",
             "named": true
+          },
+          {
+            "type": "zero_parameter_lambda_definition",
+            "named": true
           }
         ]
       }
@@ -550,6 +566,10 @@
         },
         {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "zero_parameter_lambda_definition",
           "named": true
         }
       ]
@@ -630,6 +650,21 @@
     }
   },
   {
+    "type": "zero_parameter_lambda_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "block",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": " ",
     "named": false
   },
@@ -643,6 +678,10 @@
   },
   {
     "type": ")",
+    "named": false
+  },
+  {
+    "type": "--",
     "named": false
   },
   {
