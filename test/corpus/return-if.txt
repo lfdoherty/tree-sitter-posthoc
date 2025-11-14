@@ -1,0 +1,29 @@
+=========
+return-if in simple function
+=========
+
+ascii-code-of /u8 str|string =>
+	return-if
+		eq str 'jimmy'
+		'hi'
+	'bye'
+
+---
+  (source_file
+      (function_definition
+        name: (identifier)
+        return_type: (identifier)
+        parameters: (function_parameter
+          name: (parameter_name)
+          type: (identifier)
+        )
+        body: (block
+          (return_if
+	          (base_single_line_call
+		          name: (identifier)
+		          arguments: (identifier)
+		          arguments: (string)
+	          )
+	          (string)
+          )
+          (string))))

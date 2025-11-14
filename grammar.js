@@ -11,7 +11,8 @@ module.exports = grammar({
 	name: "posthoc",
 
 	externals: ($) => [$._newline, $._indent, $._dedent],
-	extras: ($) => [$.line_comment, /[\s\f]|\r/, $.block_comment],
+	extras: ($) => [$.line_comment, /[\s\f\r]/, $.block_comment],
+	conflicts: ($) => [[$._single_line_expr, $.assignment]],
 	rules: {
 		// TODO: add the actual grammar rules
 		source_file: ($) => repeat($._top_level_statement),
@@ -31,30 +32,8 @@ module.exports = grammar({
 
 		include: ($) => seq("!include ", /[a-z\-\_\.\/]+/, $._newline),
 		return_if: ($) =>
-			//TODO why only one newline?
 			seq("return-if", $._newline, $._indent, $._expr, $._expr, $._dedent),
-		assignment: ($) =>
-			seq(
-				field("names", repeat1($.assignment_name)),
-				": ",
-				field(
-					"expr",
-					choice(
-						$.identifier,
-						$.compound_identifier,
-						$.number,
-						$.string,
-						$.multiline_call,
-						$.base_single_line_call,
-					),
-				),
-				optional($._newline),
-			),
-		assignment_name: ($) =>
-			seq(
-				field("name", $.identifier),
-				optional(seq("|", field("type", $._single_line_expr))),
-			),
+
 		named_argument: ($) =>
 			seq(field("name", $.identifier), ":", field("value", $._expr)),
 		function_parameter: ($) =>
@@ -69,28 +48,42 @@ module.exports = grammar({
 			seq(
 				field("name", $.identifier),
 				optional(field("supertype", seq(":", $.identifier))),
-				seq("/", field("return_type", $._single_line_expr)), //TODO type_expr?,
+				" ",
+				"/",
+				field("return_type", $._single_line_expr), //TODO type_expr?,
 				" ",
 				field("parameters", repeat(seq($.function_parameter, " "))),
+				"=>",
+				$._newline,
+				field("body", seq($._indent, $.block, $._dedent)),
+			),
+		assignment: ($) => {
+			const assignment_name = seq(
+				field("name", $.identifier),
+				optional(seq("|", field("type", $._single_line_expr))),
+			);
+			const assignment_names = seq(
+				assignment_name,
+				repeat(seq(" ", assignment_name)),
+				": ",
+			);
+			return seq(
+				field("names", assignment_names),
 				field(
-					"body",
+					"expr",
 					choice(
-						seq("=>", $._newline, $._indent, $.block, $._dedent),
-						seq(
-							"=> ",
-							choice(
-								seq($.identifier, $._newline),
-								seq($.compound_identifier, $._newline),
-								seq($.number, $._newline),
-								seq($.string, $._newline),
-								$.multiline_call,
-								$.base_single_line_call,
-							),
-							seq("=>", $._dedent),
-						),
+						$.identifier,
+						$.compound_identifier,
+						$.number,
+						$.string,
+						$.multiline_call,
+						$.base_single_line_call,
 					),
 				),
-			),
+				//	optional($._newline),
+			);
+		},
+
 		lambda_definition: ($) =>
 			seq(
 				"::",
@@ -110,11 +103,12 @@ module.exports = grammar({
 				),
 				$._expr,
 			),
+		multiline_arguments: ($) => repeat1(seq(choice($._expr, $.named_argument))),
 		multiline_call: ($) =>
 			seq(
 				field("name", $.identifier),
 				$._indent,
-				field("arguments", repeat1(seq(choice($._expr, $.named_argument)))),
+				field("arguments", $.multiline_arguments),
 				$._dedent,
 			),
 		base_single_line_call: ($) =>

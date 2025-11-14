@@ -1,7 +1,6 @@
 (number) @number
 (string) @string
 (function_definition name: (identifier) @function)
-(assignment_name) @variable
 [
     (line_comment)
     (block_comment)
@@ -11,8 +10,6 @@
 [
     "|"
     "=>"
-    "=> "
     "::"
 ] @operator
 (return_if) @operator
-

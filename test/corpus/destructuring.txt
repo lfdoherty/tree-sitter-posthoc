@@ -1,0 +1,27 @@
+=========
+simple function with destructuring
+=========
+
+some-function /u8 v|real =>
+	a b: real2 1 v
+	b
+
+---
+  (source_file
+      (function_definition
+        name: (identifier)
+        return_type: (identifier)
+        parameters: (function_parameter
+          name: (parameter_name)
+          type: (identifier))
+        body: (block
+          (assignment
+            name: (identifier)
+            name: (identifier)
+            expr: (base_single_line_call
+              name: (identifier)
+              arguments: (number)
+              arguments: (identifier)))
+          (base_single_line_call
+          	name: (identifier)
+          ))))

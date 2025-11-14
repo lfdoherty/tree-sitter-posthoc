@@ -5,8 +5,7 @@ test: 0
 ---
 (source_file
   (assignment
-    (assignment_name
-      (identifier))
+    (identifier)
     (number)))
 
 
@@ -17,8 +16,7 @@ test: -1
 ---
 (source_file
   (assignment
-    (assignment_name
-      (identifier))
+    (identifier)
     (number)))
 
 
@@ -29,8 +27,7 @@ test: 1.0
 ---
 (source_file
   (assignment
-    (assignment_name
-      (identifier))
+    (identifier)
     (number)))
 
 
@@ -42,8 +39,7 @@ test: .01
 ---
 (source_file
   (assignment
-    (assignment_name
-      (identifier))
+    (identifier)
     (number)))
 
 =========
@@ -53,8 +49,7 @@ test: -0.01
 ---
 (source_file
   (assignment
-    (assignment_name
-      (identifier))
+    (identifier)
     (number)))
 
 =========
@@ -64,8 +59,7 @@ test: -.01
 ---
 (source_file
   (assignment
-    (assignment_name
-      (identifier))
+    (identifier)
     (number)))
 
 =========
@@ -75,8 +69,7 @@ test: 1.
 ---
 (source_file
   (assignment
-    (assignment_name
-      (identifier))
+    (identifier)
     (number)))
 
 =========
@@ -86,8 +79,7 @@ test: 0E9
 ---
 (source_file
   (assignment
-    (assignment_name
-      (identifier))
+    (identifier)
     (number)))
 
 =========
@@ -97,8 +89,7 @@ test: 1.0E9
 ---
 (source_file
   (assignment
-    (assignment_name
-      (identifier))
+    (identifier)
     (number)))
 
 =========
@@ -108,8 +99,7 @@ test: -1.0E9
 ---
 (source_file
   (assignment
-    (assignment_name
-      (identifier))
+    (identifier)
     (number)))
 
 =========
@@ -119,8 +109,7 @@ test: 1_000_000
 ---
 (source_file
   (assignment
-    (assignment_name
-      (identifier))
+    (identifier)
     (number)))
 
 =========
@@ -130,6 +119,5 @@ test: 1.000_000_001
 ---
 (source_file
   (assignment
-    (assignment_name
-      (identifier))
+    (identifier)
     (number)))

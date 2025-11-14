@@ -9,18 +9,18 @@ ascii-code-of /u8 str|string =>
 ---
   (source_file
       (function_definition
-        (identifier)
-        (identifier)
-        (function_parameter
-          (parameter_name)
-          (identifier))
-        (block
+        name: (identifier)
+        return_type: (identifier)
+        parameters: (function_parameter
+          name: (parameter_name)
+          type: (identifier)
+        )
+        body: (block
           (assignment
-            (assignment_name
-              (identifier))
-            (base_single_line_call
-              (identifier)
-              (identifier)))
+            name: (identifier)
+            expr: (base_single_line_call
+              name: (identifier)
+              arguments: (identifier)))
           (compound_identifier))))
 
 =========
@@ -34,20 +34,54 @@ planar-graph-line-drawing-from-rectangle /planar-graph-line-drawing mins|real2 =
 ---
   (source_file
       (function_definition
+        name: (identifier)
+        return_type: (identifier)
+        parameters: (function_parameter
+          name: (parameter_name)
+          type: (identifier))
+        body: (block
+          (multiline_call
+            name: (identifier)
+            arguments: (multiline_arguments
+            (named_argument
+              name: (identifier)
+              value: (base_single_line_call
+              	name: (identifier)
+               )
+            )
+            (named_argument
+              name: (identifier)
+              value: (base_single_line_call
+              	name: (identifier)
+               )
+            )
+            )))))
+
+=========
+multiline function
+=========
+
+planar-graph-line-drawing-from-rectangle /planar-graph-line-drawing mins|real2 =>
+	a: real2 1 2
+	sum 1 a.y
+---
+  (source_file
+      (function_definition
         (identifier)
         (identifier)
         (function_parameter
           (parameter_name)
           (identifier))
         (block
-          (multiline_call
+          (assignment
             (identifier)
-            (named_argument
+            (base_single_line_call
               (identifier)
-              (base_single_line_call (identifier))
-            )
-            (named_argument
-              (identifier)
-              (base_single_line_call (identifier))
-            )
+              (number)
+              (number)))
+
+          (base_single_line_call
+            (identifier)
+            (number)
+            (compound_identifier)
             ))))

@@ -33,24 +33,8 @@
           }
         ]
       },
-      "names": {
-        "multiple": true,
-        "required": true,
-        "types": [
-          {
-            "type": "assignment_name",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "assignment_name",
-    "named": true,
-    "fields": {
       "name": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
           {
@@ -59,8 +43,50 @@
           }
         ]
       },
+      "names": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": " ",
+            "named": false
+          },
+          {
+            "type": ": ",
+            "named": false
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "compound_identifier",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "single_line_call",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "|",
+            "named": false
+          }
+        ]
+      },
       "type": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
           {
@@ -214,39 +240,7 @@
         "required": true,
         "types": [
           {
-            "type": "=>",
-            "named": false
-          },
-          {
-            "type": "=> ",
-            "named": false
-          },
-          {
-            "type": "base_single_line_call",
-            "named": true
-          },
-          {
             "type": "block",
-            "named": true
-          },
-          {
-            "type": "compound_identifier",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "multiline_call",
-            "named": true
-          },
-          {
-            "type": "number",
-            "named": true
-          },
-          {
-            "type": "string",
             "named": true
           }
         ]
@@ -392,47 +386,62 @@
     }
   },
   {
+    "type": "multiline_arguments",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "base_single_line_call",
+          "named": true
+        },
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "compound_identifier",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "lambda_definition",
+          "named": true
+        },
+        {
+          "type": "multiline_call",
+          "named": true
+        },
+        {
+          "type": "named_argument",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "multiline_call",
     "named": true,
     "fields": {
       "arguments": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "base_single_line_call",
-            "named": true
-          },
-          {
-            "type": "boolean",
-            "named": true
-          },
-          {
-            "type": "compound_identifier",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "lambda_definition",
-            "named": true
-          },
-          {
-            "type": "multiline_call",
-            "named": true
-          },
-          {
-            "type": "named_argument",
-            "named": true
-          },
-          {
-            "type": "number",
-            "named": true
-          },
-          {
-            "type": "string",
+            "type": "multiline_arguments",
             "named": true
           }
         ]
@@ -654,10 +663,6 @@
   },
   {
     "type": "=>",
-    "named": false
-  },
-  {
-    "type": "=> ",
     "named": false
   },
   {

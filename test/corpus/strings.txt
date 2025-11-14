@@ -5,8 +5,7 @@ test: 'some string'
 ---
 (source_file
   (assignment
-    (assignment_name
-      (identifier))
+    (identifier)
     (string)))
 
 
@@ -17,8 +16,7 @@ test: "some string"
 ---
 (source_file
   (assignment
-    (assignment_name
-      (identifier))
+    (identifier)
     (string)))
 
 
@@ -30,8 +28,7 @@ test: 'some "blah"
 ---
 (source_file
   (assignment
-    (assignment_name
-      (identifier))
+    (identifier)
     (string)))
 
 
@@ -44,7 +41,5 @@ test: "some 'blah'
 ---
 (source_file
   (assignment
-    (assignment_name
-      (identifier))
+    (identifier)
     (string)))
-
