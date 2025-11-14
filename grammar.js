@@ -17,8 +17,6 @@ module.exports = grammar({
 		source_file: ($) => repeat($._top_level_statement),
 
 		line_comment: ($) => token(/\/\/[^\n]*/),
-		//block_comment: ($) => token(/\/\*(.|\n)*\*\//),
-		//block_comment: ($) => token(/\/\*(\*(?!\/)|[^*])*\*\//),
 		// http://stackoverflow.com/questions/13014947/regex-to-match-a-c-style-multiline-comment/36328890#36328890
 		block_comment: (_) =>
 			token(
@@ -33,6 +31,7 @@ module.exports = grammar({
 
 		include: ($) => seq("!include ", /[a-z\-\_\.\/]+/, $._newline),
 		return_if: ($) =>
+			//TODO why only one newline?
 			seq("return-if", $._newline, $._indent, $._expr, $._expr, $._dedent),
 		assignment: ($) =>
 			seq(
@@ -56,6 +55,8 @@ module.exports = grammar({
 				field("name", $.identifier),
 				optional(seq("|", field("type", $._single_line_expr))),
 			),
+		named_argument: ($) =>
+			seq(field("name", $.identifier), ":", field("value", $._expr)),
 		function_parameter: ($) =>
 			seq(
 				field("name", $.parameter_name),
@@ -85,6 +86,7 @@ module.exports = grammar({
 								$.multiline_call,
 								$.base_single_line_call,
 							),
+							seq("=>", $._dedent),
 						),
 					),
 				),
@@ -112,7 +114,7 @@ module.exports = grammar({
 			seq(
 				field("name", $.identifier),
 				$._indent,
-				field("arguments", repeat1(seq($._expr))),
+				field("arguments", repeat1(seq(choice($._expr, $.named_argument)))),
 				$._dedent,
 			),
 		base_single_line_call: ($) =>
@@ -176,7 +178,35 @@ module.exports = grammar({
 		identifier: ($) => /[a-z&][a-z\-0-9]*/,
 		parameter_name: ($) => /[a-z\+][a-z\-0-9]*/,
 		compound_identifier: ($) => /[a-z][a-z\-0-9\.]*/,
-		number: ($) => choice(/\d+/, /\-\d+/), //TODO
+		number: ($) => {
+			const decimalDigits = /\d(_?\d)*/;
+			const signedInteger = seq(optional(choice("-")), decimalDigits);
+			const exponentPart = seq(choice("e", "E"), signedInteger);
+			const decimalIntegerLiteral = choice(
+				"0",
+				seq(
+					optional("0"),
+					/[1-9]/,
+					optional(seq(optional("_"), decimalDigits)),
+				),
+			);
+
+			const decimalLiteral = choice(
+				signedInteger,
+				seq(
+					optional("-"),
+					decimalIntegerLiteral,
+					".",
+					optional(decimalDigits),
+					optional(exponentPart),
+				),
+				seq(optional("-"), ".", decimalDigits, optional(exponentPart)),
+				seq(decimalIntegerLiteral, exponentPart),
+				decimalDigits,
+			);
+
+			return token(decimalLiteral);
+		},
 		boolean: ($) => choice("true", "false"),
 		string: ($) => /('[^']*')|("[^"]*")/,
 	},

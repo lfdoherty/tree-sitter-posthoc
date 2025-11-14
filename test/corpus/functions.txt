@@ -1,5 +1,5 @@
 =========
-Functions
+simple function
 =========
 
 ascii-code-of /u8 str|string =>
@@ -23,3 +23,31 @@ ascii-code-of /u8 str|string =>
               (identifier)))
           (compound_identifier))))
 
+=========
+function ending with multiline call with named arguments
+=========
+
+planar-graph-line-drawing-from-rectangle /planar-graph-line-drawing mins|real2 =>
+	planar-graph-line-drawing
+		vertexes: empty-list
+		splines: empty-list
+---
+  (source_file
+      (function_definition
+        (identifier)
+        (identifier)
+        (function_parameter
+          (parameter_name)
+          (identifier))
+        (block
+          (multiline_call
+            (identifier)
+            (named_argument
+              (identifier)
+              (base_single_line_call (identifier))
+            )
+            (named_argument
+              (identifier)
+              (base_single_line_call (identifier))
+            )
+            ))))

@@ -1,0 +1,135 @@
+=========
+unsigned integer literal
+=========
+test: 0
+---
+(source_file
+  (assignment
+    (assignment_name
+      (identifier))
+    (number)))
+
+
+=========
+signed integer literal
+=========
+test: -1
+---
+(source_file
+  (assignment
+    (assignment_name
+      (identifier))
+    (number)))
+
+
+=========
+real literal
+=========
+test: 1.0
+---
+(source_file
+  (assignment
+    (assignment_name
+      (identifier))
+    (number)))
+
+
+
+=========
+real literal starting with period
+=========
+test: .01
+---
+(source_file
+  (assignment
+    (assignment_name
+      (identifier))
+    (number)))
+
+=========
+real literal starting with negative
+=========
+test: -0.01
+---
+(source_file
+  (assignment
+    (assignment_name
+      (identifier))
+    (number)))
+
+=========
+real literal starting with negative period
+=========
+test: -.01
+---
+(source_file
+  (assignment
+    (assignment_name
+      (identifier))
+    (number)))
+
+=========
+real literal ending with period
+=========
+test: 1.
+---
+(source_file
+  (assignment
+    (assignment_name
+      (identifier))
+    (number)))
+
+=========
+unsigned integer literal with exponent
+=========
+test: 0E9
+---
+(source_file
+  (assignment
+    (assignment_name
+      (identifier))
+    (number)))
+
+=========
+unsigned real literal with exponent
+=========
+test: 1.0E9
+---
+(source_file
+  (assignment
+    (assignment_name
+      (identifier))
+    (number)))
+
+=========
+signed real literal with exponent
+=========
+test: -1.0E9
+---
+(source_file
+  (assignment
+    (assignment_name
+      (identifier))
+    (number)))
+
+=========
+unsigned integer literal with underscore spacing
+=========
+test: 1_000_000
+---
+(source_file
+  (assignment
+    (assignment_name
+      (identifier))
+    (number)))
+
+=========
+real literal with underscore spacing in exponent
+=========
+test: 1.000_000_001
+---
+(source_file
+  (assignment
+    (assignment_name
+      (identifier))
+    (number)))
