@@ -1,0 +1,14 @@
+=========
+special discard variable name identified
+=========
+test _: some-func 1 2
+---
+(source_file
+  (assignment
+    (identifier)
+    (discard_identifier)
+    (base_single_line_call
+    	(identifier)
+     	(number)
+      	(number)
+    )))

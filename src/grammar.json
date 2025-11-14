@@ -295,8 +295,17 @@
                     "type": "FIELD",
                     "name": "name",
                     "content": {
-                      "type": "SYMBOL",
-                      "name": "identifier"
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "SYMBOL",
+                          "name": "identifier"
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "discard_identifier"
+                        }
+                      ]
                     }
                   },
                   {
@@ -342,8 +351,17 @@
                           "type": "FIELD",
                           "name": "name",
                           "content": {
-                            "type": "SYMBOL",
-                            "name": "identifier"
+                            "type": "CHOICE",
+                            "members": [
+                              {
+                                "type": "SYMBOL",
+                                "name": "identifier"
+                              },
+                              {
+                                "type": "SYMBOL",
+                                "name": "discard_identifier"
+                              }
+                            ]
                           }
                         },
                         {
@@ -831,6 +849,10 @@
     "compound_identifier": {
       "type": "PATTERN",
       "value": "[a-z][a-z\\-0-9\\.]*"
+    },
+    "discard_identifier": {
+      "type": "PATTERN",
+      "value": "_"
     },
     "number": {
       "type": "TOKEN",

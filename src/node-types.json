@@ -38,6 +38,10 @@
         "required": true,
         "types": [
           {
+            "type": "discard_identifier",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           }
@@ -61,6 +65,10 @@
           },
           {
             "type": "compound_identifier",
+            "named": true
+          },
+          {
+            "type": "discard_identifier",
             "named": true
           },
           {
@@ -710,6 +718,10 @@
   },
   {
     "type": "compound_identifier",
+    "named": true
+  },
+  {
+    "type": "discard_identifier",
     "named": true
   },
   {

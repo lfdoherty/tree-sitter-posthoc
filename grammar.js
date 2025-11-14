@@ -59,7 +59,7 @@ module.exports = grammar({
 			),
 		assignment: ($) => {
 			const assignment_name = seq(
-				field("name", $.identifier),
+				field("name", choice($.identifier, $.discard_identifier)),
 				optional(seq("|", field("type", $._single_line_expr))),
 			);
 			const assignment_names = seq(
@@ -175,6 +175,7 @@ module.exports = grammar({
 		identifier: ($) => /[a-z&][a-z\-0-9]*/,
 		parameter_name: ($) => /[a-z\+][a-z\-0-9]*/,
 		compound_identifier: ($) => /[a-z][a-z\-0-9\.]*/,
+		discard_identifier: ($) => /_/,
 		number: ($) => {
 			const decimalDigits = /\d(_?\d)*/;
 			const signedInteger = seq(optional(choice("-")), decimalDigits);
